@@ -1,13 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
-from twilio.rest import Client
 import streamlit as st
-
-# Twilio client configuration
-account_sid = "ACda6ebb502b2fb7cbf39ff1150fed18b7"
-auth_token = "163f900bfe14726b2cc43459090bff59"
-client = Client(account_sid, auth_token)
 
 # Initialize and fit the model and scaler (example training data)
 training_data = pd.DataFrame({
@@ -60,12 +54,5 @@ if st.button("Predict"):
     else:
         msg_body = "☀️ No rain expected today! It’s a good day to plan outdoor activities."
         st.success(msg_body)
-
-    # Sending the message (comment out if you want to run without sending)
-    message = client.messages.create(
-        from_='whatsapp:+14155238886',  # Use the correct number
-        to='whatsapp:+916205025237',     # Your verified phone number
-        body=msg_body
-    )
 
 # Run your Streamlit app
